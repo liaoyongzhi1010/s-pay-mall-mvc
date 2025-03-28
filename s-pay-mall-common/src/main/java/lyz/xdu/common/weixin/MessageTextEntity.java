@@ -1,4 +1,4 @@
-package lyz.xdu.common;
+package lyz.xdu.common.weixin;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
