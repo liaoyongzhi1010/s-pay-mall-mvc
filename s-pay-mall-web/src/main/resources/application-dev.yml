@@ -12,6 +12,9 @@ weixin:
   config:
     originalid: gh_6b4b7451a995
     token: lyz1010
+    app-id: wx18c00547ebbe5c9e
+    appsecret: 7e7159829db450c61a0a4f23a80c479d
+    template_id: wCASo3Ra9WJrmKp6g8Au2KOw9i2n241UZG-D5Flhy7I
 
 # 日志
 logging:
