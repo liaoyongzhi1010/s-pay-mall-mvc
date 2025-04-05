@@ -1,6 +1,6 @@
 package lyz.xdu.service.wexin;
 
-import lyz.xdu.domain.po.WeixinTemplateMessageVO;
+import lyz.xdu.domain.vo.WeixinTemplateMessageVO;
 import lyz.xdu.domain.req.WeixinQrCodeReq;
 import lyz.xdu.domain.res.WeixinQrCodeRes;
 import lyz.xdu.domain.res.WeixinTokenRes;

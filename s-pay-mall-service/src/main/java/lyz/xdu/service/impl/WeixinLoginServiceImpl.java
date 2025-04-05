@@ -1,7 +1,7 @@
 package lyz.xdu.service.impl;
 
 import com.google.common.cache.Cache;
-import lyz.xdu.domain.po.WeixinTemplateMessageVO;
+import lyz.xdu.domain.vo.WeixinTemplateMessageVO;
 import lyz.xdu.domain.req.WeixinQrCodeReq;
 import lyz.xdu.domain.res.WeixinQrCodeRes;
 import lyz.xdu.domain.res.WeixinTokenRes;
