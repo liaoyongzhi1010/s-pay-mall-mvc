@@ -1,4 +1,4 @@
-package lyz.xdu.domain.po;
+package lyz.xdu.domain.vo;
 
 import java.util.HashMap;
 import java.util.Map;
