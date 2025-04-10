@@ -65,7 +65,7 @@ public class AlipayController {
     }
 
     /**
-     * http://xfg-studio.natapp1.cc/api/v1/alipay/alipay_notify_url
+     *  http://lyz1010.natapp1.cc/api/v1/alipay/alipay_notify_url
      */
     @RequestMapping(value = "alipay_notify_url", method = RequestMethod.POST)
     public String payNotify(HttpServletRequest request) throws AlipayApiException {
