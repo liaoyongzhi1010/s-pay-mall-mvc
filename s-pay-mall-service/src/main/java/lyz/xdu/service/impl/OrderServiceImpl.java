@@ -1,9 +1,11 @@
 package lyz.xdu.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
+import com.google.common.eventbus.EventBus;
 import lombok.extern.slf4j.Slf4j;
 import lyz.xdu.common.constants.Constants;
 import lyz.xdu.dao.IOrderDao;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -36,6 +39,9 @@ public class OrderServiceImpl implements IOrderService {
     private ProductRPC productRPC;
     @Resource
     private AlipayClient alipayClient;
+
+    @Resource
+    private EventBus eventBus;
 
     @Override
     public PayOrderRes createOrder(ShopCartReq shopCartReq) throws Exception {
@@ -81,6 +87,31 @@ public class OrderServiceImpl implements IOrderService {
                 .orderId(orderId)
                 .payUrl(payOrder.getPayUrl())
                 .build();
+    }
+
+    @Override
+    public void changeOrderPaySuccess(String orderId) {
+        PayOrder payOrderReq = new PayOrder();
+        payOrderReq.setOrderId(orderId);
+        payOrderReq.setStatus(Constants.OrderStatusEnum.PAY_SUCCESS.getCode());
+        orderDao.changeOrderPaySuccess(payOrderReq);
+
+        eventBus.post(JSON.toJSONString(payOrderReq));
+    }
+
+    @Override
+    public List<String> queryNoPayNotifyOrder() {
+        return orderDao.queryNoPayNotifyOrder();
+    }
+
+    @Override
+    public List<String> queryTimeoutCloseOrderList() {
+        return orderDao.queryTimeoutCloseOrderList();
+    }
+
+    @Override
+    public boolean changeOrderClose(String orderId) {
+        return orderDao.changeOrderClose(orderId);
     }
 
     private PayOrder doPrepayOrder(String productId, String productName, String orderId, BigDecimal totalAmount) throws AlipayApiException {
